@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Service Fabric SignalR TopicActor Demo</h1>
+
+    <p>This browser has called Subscribe on both the AuctionHub & BidHub.</p>
+    <p>The Hubs use the TopicClient to subscribe to the appropriate TopicActor events & linke each subscription with your websocket connection id.</p>
+    <p>Auction and bid events are being randomly published to TopicActors by the EventPublisher service.</p>
+    <p>Event messages are being received by the TopicClient & forwarded onto appropriate users using the linked connection ids.</p>
+</div>
+
+<div id="realtime-demo">
+
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/aspnet-signalr/1.1.4/signalr.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+
+<script>
+
+    var _connection = new signalR.HubConnectionBuilder()
+        .withUrl("/hubs/auction/")
+        .build();
+
+    var _connected = _connection.start().catch(err => {
+        return console.error(err.toString());
+    });
+
+    var subscriptions = [];
+
+    subscribe = (subscription, callback) => {
+        if (subscriptions.find(s => _.isEqual(s, subscription))) {
+            return;
+        }
+
+        subscriptions.push(subscription);
+
+        _connected.then(() => {
+            _connection
+                .invoke("subscribe", subscription)
+                .catch(err => console.error(err.toString()));
+
+            _connection.on("onMessage", (message) => {
+                callback(message);
+            });
+        });
+    }
+
+    unsubscribe = (subscription) => {
+        _.remove(subscriptions, s => _.isEqual(s, subscription));
+        _connection.invoke("unsubscribe", subscription)
+    }
+
+    window.onload = () => {
+        subscribe({
+            category: "Test"
+        }, message => console.log(message));
+    };
+
+</script>
