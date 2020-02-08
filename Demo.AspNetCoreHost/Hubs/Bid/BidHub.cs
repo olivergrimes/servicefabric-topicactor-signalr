@@ -29,13 +29,12 @@ namespace Demo.AspNetCoreHost.Hubs.Bid
 
     public class BidHub : TopicHub<BidHub, IBidHub, BidSubscription, BidUpdate>
     {
-        public BidHub(ITopicClient<BidUpdate, BidHub, IBidHub> topicClient)
+        public BidHub(ITopicClient<BidUpdate, BidHub, IBidHub, BidSubscription> topicClient)
              : base(topicClient,
                   authoriseSubscription: (subscription, context) =>
                   {
                       return Task.FromResult(true); //Handle subscription-level auth
-                  },
-                  topicIdGenerator: subscription => $"NewBids-{subscription.AuctionId}")
+                  })
         { }
     }
 }

@@ -12,4 +12,8 @@
     <PackageReference Include="Microsoft.ServiceFabric.Actors" Version="4.0.457" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceFabric.SignalR.Topics\ServiceFabric.SignalR.Topics.csproj" />
+  </ItemGroup>
+
 </Project>

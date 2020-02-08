@@ -3,13 +3,13 @@ using System.Threading.Tasks;
 
 namespace ServiceFabric.SignalR.Topics.Hubs
 {
-    public interface ITopicClient<TMessage, THub, TIHub>
+    public interface ITopicClient<TMessage, THub, TIHub, TSubscription>
         where THub : Hub<TIHub>
         where TIHub : class, ITopicHub<TMessage>
     {
-        Task Subscribe(string connectionId, string topicId);
+        Task Subscribe(TSubscription subscription, string connectionId);
 
-        Task Unsubscribe(string connectionId, string topicId);
+        Task Unsubscribe(TSubscription subscription, string connectionId);
 
         Task UnsubscribeAll(string connectionId);
     }

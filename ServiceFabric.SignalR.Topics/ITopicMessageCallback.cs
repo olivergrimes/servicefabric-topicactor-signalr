@@ -2,8 +2,8 @@
 
 namespace ServiceFabric.SignalR.Topics
 {
-    public interface ITopicMessageCallback<TMessage>
+    public interface ITopicMessageCallback<TMessage, TSubscription>
     {
-        Task OnMessage(string topicId, TMessage message);
+        Task OnMessage(TSubscription subscription, TMessage message);
     }
 }

@@ -2,8 +2,9 @@
 
 namespace ServiceFabric.SignalR.Topics
 {
-    public interface ITopicPublisher<TMessage>
+    public interface ITopicPublisher<TMessage, TSubscription>
+        where TSubscription : ITopicId<TSubscription>
     {
-        Task Publish(string topicId, TMessage message);
+        Task Publish(TMessage message, TSubscription subscription);
     }
 }

@@ -2,10 +2,11 @@
 
 namespace ServiceFabric.SignalR.Topics
 {
-    public interface ITopicSubscriber<TMessage>
+    public interface ITopicSubscriber<TMessage, TSubscription>
+        where TSubscription : ITopicId<TSubscription>
     {
-        Task Subscribe(string topicId);
+        Task Subscribe(TSubscription subscription);
 
-        Task Unsubscribe(string topicId);
+        Task Unsubscribe(TSubscription subscription);
     }
 }

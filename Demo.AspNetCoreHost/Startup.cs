@@ -34,8 +34,8 @@ namespace Demo.AspNetCoreHost
             });
 
             services.AddScoped<IActorProxyFactory, ActorProxyFactory>();
-            services.AddScoped(typeof(ITopicSubscriberFactory<>), typeof(TopicActorSubscriberFactory<>));
-            services.AddSingleton(typeof(ITopicClient<,,>), typeof(TopicClient<,,>));
+            services.AddScoped(typeof(ITopicSubscriberFactory<,>), typeof(TopicActorSubscriberFactory<,>));
+            services.AddSingleton(typeof(ITopicClient<,,,>), typeof(TopicClient<,,,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

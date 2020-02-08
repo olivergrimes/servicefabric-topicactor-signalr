@@ -1,7 +1,8 @@
 ﻿namespace ServiceFabric.SignalR.Topics
 {
-    public interface ITopicSubscriberFactory<TMessage>
+    public interface ITopicSubscriberFactory<TMessage, TSubscription>
+        where TSubscription : ITopicId<TSubscription>
     {
-        ITopicSubscriber<TMessage> Create(ITopicMessageCallback<TMessage> callback);
+        ITopicSubscriber<TMessage, TSubscription> Create(ITopicMessageCallback<TMessage, TSubscription> callback);
     }
 }

@@ -8,19 +8,24 @@ using System.Threading.Tasks;
 
 namespace ServiceFabric.SignalR.Topics.Hubs
 {
-    public class TopicClient<TMessage, THub, TIHub> :
-        ITopicClient<TMessage, THub, TIHub>,
-        ITopicMessageCallback<TMessage>
+    public class TopicClient<TMessage, THub, TIHub, TSubscription> :
+        ITopicClient<TMessage, THub, TIHub, TSubscription>,
+        ITopicMessageCallback<TMessage, TSubscription>
         where THub : Hub<TIHub>
         where TIHub : class, ITopicHub<TMessage>
+        where TSubscription : ITopicId<TSubscription>
     {
-        private readonly ITopicSubscriber<TMessage> _topicSubscriber;
         private readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
-        private readonly ConcurrentDictionary<string, HashSet<string>> _topicConnections = new ConcurrentDictionary<string, HashSet<string>>(); //<topicId, HashSet<connectionId>>
+
+        private readonly ConcurrentDictionary<TSubscription, HashSet<string>> _topicConnections = 
+            new ConcurrentDictionary<TSubscription, HashSet<string>>(); //<topicId, HashSet<connectionId>>
+        
+        private readonly ITopicSubscriber<TMessage, TSubscription> _topicSubscriber;
+        
         private readonly IHubContext<THub, TIHub> _hubContext;
 
         public TopicClient(
-            ITopicSubscriberFactory<TMessage> topicSubscriberFactory,
+            ITopicSubscriberFactory<TMessage, TSubscription> topicSubscriberFactory,
             IHubContext<THub, TIHub> hubContext)
         {
             if (topicSubscriberFactory == null)
@@ -32,13 +37,13 @@ namespace ServiceFabric.SignalR.Topics.Hubs
             _hubContext = hubContext ?? throw new ArgumentNullException(nameof(hubContext));
         }
 
-        public Task Subscribe(string connectionId, string topicId)
+        public Task Subscribe(TSubscription subscription, string connectionId)
         {
             return WithLock(async () =>
             {
-                await _topicSubscriber.Subscribe(topicId);
+                await _topicSubscriber.Subscribe(subscription);
 
-                _topicConnections.AddOrUpdate(topicId, new HashSet<string> { connectionId },
+                _topicConnections.AddOrUpdate(subscription, new HashSet<string> { connectionId },
                     (_, connectionIds) =>
                     {
                         connectionIds.Add(connectionId);
@@ -47,11 +52,11 @@ namespace ServiceFabric.SignalR.Topics.Hubs
             });
         }
 
-        public Task Unsubscribe(string connectionId, string topicId)
+        public Task Unsubscribe(TSubscription subscription, string connectionId)
         {
             return WithLock(async () =>
             {
-                if (!_topicConnections.TryRemove(topicId, out var connectionIds))
+                if (!_topicConnections.TryRemove(subscription, out var connectionIds))
                 {
                     return;
                 }
@@ -62,13 +67,13 @@ namespace ServiceFabric.SignalR.Topics.Hubs
 
                 if (connectionIds.Any())
                 {
-                    topicHasConnections = _topicConnections.TryAdd(topicId, connectionIds);
+                    topicHasConnections = _topicConnections.TryAdd(subscription, connectionIds);
                 }
 
                 if (!topicHasConnections)
                 {
                     //All connections removed, unsubscribe
-                    await _topicSubscriber.Unsubscribe(topicId);
+                    await _topicSubscriber.Unsubscribe(subscription);
                 }
             });
         }
@@ -81,13 +86,13 @@ namespace ServiceFabric.SignalR.Topics.Hubs
 
             foreach (var topicConnection in topicConnections)
             {
-                await Unsubscribe(connectionId, topicConnection.Key);
+                await Unsubscribe(topicConnection.Key, connectionId);
             }
         }
 
-        public Task OnMessage(string topicId, TMessage message)
+        public Task OnMessage(TSubscription subscription, TMessage message)
         {
-            if (!_topicConnections.TryGetValue(topicId, out var connectionIds))
+            if (!_topicConnections.TryGetValue(subscription, out var connectionIds))
             {
                 return Task.CompletedTask;
             }

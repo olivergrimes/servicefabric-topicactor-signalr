@@ -8,35 +8,28 @@ namespace ServiceFabric.SignalR.Topics.Hubs
            where THub : Hub<TIHub>
            where TIHub : class, ITopicHub<TMessage>
     {
-        private readonly ITopicClient<TMessage, THub, TIHub> _topicClient;
+        private readonly ITopicClient<TMessage, THub, TIHub, TSubscription> _topicClient;
         private readonly Func<TSubscription, HubCallerContext, Task<bool>> _authoriseSubscription;
-        private readonly Func<TSubscription, string> _topicIdGenerator;
 
         public TopicHub(
-            ITopicClient<TMessage, THub, TIHub> topicClient,
-            Func<TSubscription, HubCallerContext, Task<bool>> authoriseSubscription,
-            Func<TSubscription, string> topicIdGenerator)
+            ITopicClient<TMessage, THub, TIHub, TSubscription> topicClient,
+            Func<TSubscription, HubCallerContext, Task<bool>> authoriseSubscription)
         {
             _topicClient = topicClient ?? throw new ArgumentNullException(nameof(topicClient));
             _authoriseSubscription = authoriseSubscription ?? throw new ArgumentNullException(nameof(authoriseSubscription));
-            _topicIdGenerator = topicIdGenerator ?? throw new ArgumentNullException(nameof(topicIdGenerator));
         }
 
         public async Task Subscribe(TSubscription subscription)
         {
-            var topicId = _topicIdGenerator(subscription);
-
             if (await _authoriseSubscription(subscription, Context))
             {
-                await _topicClient.Subscribe(Context.ConnectionId, topicId);
+                await _topicClient.Subscribe(subscription, Context.ConnectionId);
             }
         }
 
         public async Task Unsubscribe(TSubscription subscription)
         {
-            var topicId = _topicIdGenerator(subscription);
-
-            await _topicClient.Unsubscribe(Context.ConnectionId, topicId);
+            await _topicClient.Unsubscribe(subscription, Context.ConnectionId);
         }
 
         public async Task UnsubscribeAll()
