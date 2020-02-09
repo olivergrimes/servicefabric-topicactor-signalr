@@ -1,18 +1,16 @@
-﻿using ServiceFabric.SignalR.Topics.Hubs;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Demo.TopicActor.Interfaces;
+using ServiceFabric.SignalR.Topics.Hubs;
 
 namespace Demo.AspNetCoreHost.Hubs.Auction
 {
     public class AuctionHub : TopicHub<AuctionHub, IAuctionHub, AuctionSubscription, AuctionUpdate>
     {
-        public AuctionHub(ITopicClient<AuctionUpdate, AuctionHub, IAuctionHub> topicClient)
-            : base(topicClient,
-                  authoriseSubscription: (subscription, context) =>
-                  {
-                      return Task.FromResult(true); //Handle subscription-level auth
-                  },
-                  topicIdGenerator: subscription => $"NewAuctions-{subscription.Category}") //TODO: move topicId generator to shared dep for publisher
+        public AuctionHub(ITopicClient<AuctionHub, IAuctionHub, AuctionSubscription, AuctionUpdate> topicClient)
+            : base(topicClient, authorise: (subscription, context) =>
+                {
+                    return Task.FromResult(true); //Used to check resource based authorisation for requested subscription
+                })
         { }
     }
 }

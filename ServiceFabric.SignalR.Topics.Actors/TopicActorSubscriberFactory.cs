@@ -3,7 +3,8 @@ using System;
 
 namespace ServiceFabric.SignalR.Topics.Actors
 {
-    public class TopicActorSubscriberFactory<TMessage> : ITopicSubscriberFactory<TMessage>
+    public class TopicActorSubscriberFactory<TMessage, TSubscription> : ITopicSubscriberFactory<TMessage, TSubscription>
+        where TSubscription : ITopicId<TSubscription>
     {
         private readonly IActorProxyFactory _actorProxyFactory;
 
@@ -12,9 +13,9 @@ namespace ServiceFabric.SignalR.Topics.Actors
             _actorProxyFactory = actorProxyFactory ?? throw new ArgumentNullException(nameof(actorProxyFactory));
         }
 
-        public ITopicSubscriber<TMessage> Create(ITopicMessageCallback<TMessage> callback)
+        public ITopicSubscriber<TMessage, TSubscription> Create(ITopicMessageCallback<TMessage, TSubscription> callback)
         {
-            return new TopicActorSubscriber<TMessage>(_actorProxyFactory, callback);
+            return new TopicActorSubscriber<TMessage, TSubscription>(_actorProxyFactory, callback);
         }
     }
 }

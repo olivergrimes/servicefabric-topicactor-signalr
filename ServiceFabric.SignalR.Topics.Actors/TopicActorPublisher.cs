@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace ServiceFabric.SignalR.Topics.Actors
 {
-    public class TopicActorPublisher<TMessage> : ITopicPublisher<TMessage>
+    public class TopicActorPublisher<TMessage, TSubscription> : ITopicPublisher<TMessage, TSubscription>
+        where TSubscription : ITopicId<TSubscription>
     {
         private readonly IActorProxyFactory _actorProxyFactory;
 
@@ -16,16 +17,19 @@ namespace ServiceFabric.SignalR.Topics.Actors
             _actorProxyFactory = actorProxyFactory ?? throw new ArgumentNullException(nameof(actorProxyFactory));
         }
 
-        public async Task Publish(string topicId, TMessage message)
+        public async Task Publish(TMessage message, TSubscription subscription)
         {
             var uri = ActorNameFormat.GetFabricServiceUri(typeof(ITopicActor));
+            var topicId = subscription.GetTopicId();
             var actor = _actorProxyFactory.CreateActorProxy<ITopicActor>(uri, new ActorId(topicId));
-            var body = JsonConvert.SerializeObject(message);
+
+            var serialisedMessage = JsonConvert.SerializeObject(message);
+            var serialisedSubscription = JsonConvert.SerializeObject(subscription);
 
             await actor.PublishMessage(new TopicActorMessage
             {
-                Id = topicId,
-                Body = body
+                Subscription = serialisedSubscription,
+                Message = serialisedMessage
             });
         }
     }

@@ -2,8 +2,8 @@
 {
     public class TopicActorMessage
     {
-        public string Id { get; set; }
+        public string Subscription { get; set; }
 
-        public string Body { get; set; }
+        public string Message { get; set; }
     }
 }

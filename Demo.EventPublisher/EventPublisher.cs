@@ -13,9 +13,9 @@ namespace Demo.EventPublisher
 {
     internal sealed class EventPublisher : StatelessService
     {
-        private readonly ITopicPublisher<AuctionUpdate> _topicPublisher;
+        private readonly ITopicPublisher<AuctionUpdate, AuctionSubscription> _topicPublisher;
 
-        public EventPublisher(StatelessServiceContext context, ITopicPublisher<AuctionUpdate> topicPublisher)
+        public EventPublisher(StatelessServiceContext context, ITopicPublisher<AuctionUpdate, AuctionSubscription> topicPublisher)
             : base(context)
         {
             _topicPublisher = topicPublisher ?? throw new ArgumentNullException(nameof(topicPublisher));
@@ -36,12 +36,16 @@ namespace Demo.EventPublisher
 
                 ServiceEventSource.Current.ServiceMessage(this.Context, "Working-{0}", ++iterations);
 
-                await _topicPublisher.Publish($"NewAuctions-Test", new AuctionUpdate
+                await _topicPublisher.Publish(new AuctionUpdate
                 {
                     DateClosing = DateTime.Now,
                     Id = 1,
                     Name = "Test"
-                });
+                },
+                    new AuctionSubscription
+                    {
+                        Category = "Test",
+                    });
 
                 await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
             }

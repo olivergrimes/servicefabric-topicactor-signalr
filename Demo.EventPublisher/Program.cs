@@ -3,8 +3,6 @@ using System.Diagnostics;
 using System.Threading;
 using Demo.TopicActor.Interfaces;
 using Microsoft.ServiceFabric.Actors.Client;
-using Microsoft.ServiceFabric.Actors.Remoting.FabricTransport;
-using Microsoft.ServiceFabric.Services.Remoting;
 using Microsoft.ServiceFabric.Services.Runtime;
 using ServiceFabric.SignalR.Topics.Actors;
 
@@ -19,7 +17,7 @@ namespace Demo.EventPublisher
                 ServiceRuntime.RegisterServiceAsync("Demo.EventPublisherType",
                     context => new EventPublisher(
                         context,
-                        new TopicActorPublisher<AuctionUpdate>(new ActorProxyFactory()))
+                        new TopicActorPublisher<AuctionUpdate, AuctionSubscription>(new ActorProxyFactory()))
                     ).GetAwaiter().GetResult();
 
                 ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(EventPublisher).Name);
