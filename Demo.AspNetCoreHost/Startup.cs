@@ -5,11 +5,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.ServiceFabric.Actors.Client;
-using Microsoft.ServiceFabric.Actors.Remoting.FabricTransport;
-using Microsoft.ServiceFabric.Services.Remoting;
-using ServiceFabric.SignalR.Topics;
-using ServiceFabric.SignalR.Topics.Actors;
 using ServiceFabric.SignalR.Topics.Hubs;
 
 namespace Demo.AspNetCoreHost
@@ -32,10 +27,8 @@ namespace Demo.AspNetCoreHost
             {
                 o.EnableDetailedErrors = true;
             });
-
-            services.AddScoped<IActorProxyFactory, ActorProxyFactory>();
-            services.AddSingleton(typeof(ITopicSubscriberFactory<,>), typeof(TopicActorSubscriberFactory<,>));
-            services.AddSingleton(typeof(ITopicClient<,,,>), typeof(TopicClient<,,,>));
+            
+            services.RegisterTopics();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Demo.TopicActor.Interfaces\Demo.TopicActor.Interfaces.csproj" />
+    <ProjectReference Include="..\ServiceFabric.SignalR.Topics.Actors\ServiceFabric.SignalR.Topics.Actors.csproj" />
     <ProjectReference Include="..\ServiceFabric.SignalR.Topics\ServiceFabric.SignalR.Topics.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,6 @@
-﻿using ServiceFabric.SignalR.Topics.Hubs;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Demo.TopicActor.Interfaces;
+using ServiceFabric.SignalR.Topics.Hubs;
 
 namespace Demo.AspNetCoreHost.Hubs.Auction
 {

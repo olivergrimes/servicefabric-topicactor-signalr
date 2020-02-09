@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.TopicActor", "Demo.Top
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.TopicActor.Interfaces", "Demo.TopicActor.Interfaces\Demo.TopicActor.Interfaces.csproj", "{C82F55C3-1D4D-4D4B-80B9-1BB66F3FD586}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceFabric.SignalR.Topics.Actors", "ServiceFabric.SignalR.Topics.Actors\ServiceFabric.SignalR.Topics.Actors.csproj", "{D03482CA-6EB8-44E3-A6DD-A4422CE87ABB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceFabric.SignalR.Topics.Hubs", "ServiceFabric.SignalR.Topics.Hubs\ServiceFabric.SignalR.Topics.Hubs.csproj", "{99F26EF6-A905-4B5F-873E-9F105BB3B39F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +87,22 @@ Global
 		{C82F55C3-1D4D-4D4B-80B9-1BB66F3FD586}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C82F55C3-1D4D-4D4B-80B9-1BB66F3FD586}.Release|x64.ActiveCfg = Release|Any CPU
 		{C82F55C3-1D4D-4D4B-80B9-1BB66F3FD586}.Release|x64.Build.0 = Release|Any CPU
+		{D03482CA-6EB8-44E3-A6DD-A4422CE87ABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D03482CA-6EB8-44E3-A6DD-A4422CE87ABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D03482CA-6EB8-44E3-A6DD-A4422CE87ABB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D03482CA-6EB8-44E3-A6DD-A4422CE87ABB}.Debug|x64.Build.0 = Debug|Any CPU
+		{D03482CA-6EB8-44E3-A6DD-A4422CE87ABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D03482CA-6EB8-44E3-A6DD-A4422CE87ABB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D03482CA-6EB8-44E3-A6DD-A4422CE87ABB}.Release|x64.ActiveCfg = Release|Any CPU
+		{D03482CA-6EB8-44E3-A6DD-A4422CE87ABB}.Release|x64.Build.0 = Release|Any CPU
+		{99F26EF6-A905-4B5F-873E-9F105BB3B39F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99F26EF6-A905-4B5F-873E-9F105BB3B39F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99F26EF6-A905-4B5F-873E-9F105BB3B39F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{99F26EF6-A905-4B5F-873E-9F105BB3B39F}.Debug|x64.Build.0 = Debug|Any CPU
+		{99F26EF6-A905-4B5F-873E-9F105BB3B39F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F26EF6-A905-4B5F-873E-9F105BB3B39F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99F26EF6-A905-4B5F-873E-9F105BB3B39F}.Release|x64.ActiveCfg = Release|Any CPU
+		{99F26EF6-A905-4B5F-873E-9F105BB3B39F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
