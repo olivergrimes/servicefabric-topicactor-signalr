@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace ServiceFabric.SignalR.Topics.Hubs
 {
-    public interface ITopicClient<TMessage, THub, TIHub, TSubscription>
+    public interface ITopicClient<THub, TIHub, TSubscription, TMessage>
         where THub : Hub<TIHub>
         where TIHub : class, ITopicHub<TMessage>
     {

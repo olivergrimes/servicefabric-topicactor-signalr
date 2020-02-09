@@ -34,7 +34,7 @@ namespace Demo.AspNetCoreHost
             });
 
             services.AddScoped<IActorProxyFactory, ActorProxyFactory>();
-            services.AddScoped(typeof(ITopicSubscriberFactory<,>), typeof(TopicActorSubscriberFactory<,>));
+            services.AddSingleton(typeof(ITopicSubscriberFactory<,>), typeof(TopicActorSubscriberFactory<,>));
             services.AddSingleton(typeof(ITopicClient<,,,>), typeof(TopicClient<,,,>));
         }
 

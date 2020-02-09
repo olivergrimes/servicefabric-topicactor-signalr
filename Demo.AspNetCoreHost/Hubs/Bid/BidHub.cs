@@ -1,9 +1,4 @@
-﻿using Demo.AspNetCoreHost.Hubs.Auction;
-using Microsoft.AspNetCore.SignalR;
-using ServiceFabric.SignalR.Topics.Hubs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ServiceFabric.SignalR.Topics.Hubs;
 using System.Threading.Tasks;
 
 namespace Demo.AspNetCoreHost.Hubs.Bid
@@ -29,12 +24,11 @@ namespace Demo.AspNetCoreHost.Hubs.Bid
 
     public class BidHub : TopicHub<BidHub, IBidHub, BidSubscription, BidUpdate>
     {
-        public BidHub(ITopicClient<BidUpdate, BidHub, IBidHub, BidSubscription> topicClient)
-             : base(topicClient,
-                  authoriseSubscription: (subscription, context) =>
-                  {
-                      return Task.FromResult(true); //Handle subscription-level auth
-                  })
+        public BidHub(ITopicClient<BidHub, IBidHub, BidSubscription, BidUpdate> topicClient)
+             : base(topicClient, authorise: (subscription, context) =>
+                 {
+                     return Task.FromResult(true); //Used to check resource based authorisation for requested subscription
+                 })
         { }
     }
 }

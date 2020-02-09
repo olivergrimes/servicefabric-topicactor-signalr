@@ -6,12 +6,11 @@ namespace Demo.AspNetCoreHost.Hubs.Auction
 {
     public class AuctionHub : TopicHub<AuctionHub, IAuctionHub, AuctionSubscription, AuctionUpdate>
     {
-        public AuctionHub(ITopicClient<AuctionUpdate, AuctionHub, IAuctionHub, AuctionSubscription> topicClient)
-            : base(topicClient,
-                  authoriseSubscription: (subscription, context) =>
-                  {
-                      return Task.FromResult(true); //Handle subscription-level auth
-                  })
+        public AuctionHub(ITopicClient<AuctionHub, IAuctionHub, AuctionSubscription, AuctionUpdate> topicClient)
+            : base(topicClient, authorise: (subscription, context) =>
+                {
+                    return Task.FromResult(true); //Used to check resource based authorisation for requested subscription
+                })
         { }
     }
 }

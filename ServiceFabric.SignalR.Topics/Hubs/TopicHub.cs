@@ -8,20 +8,20 @@ namespace ServiceFabric.SignalR.Topics.Hubs
            where THub : Hub<TIHub>
            where TIHub : class, ITopicHub<TMessage>
     {
-        private readonly ITopicClient<TMessage, THub, TIHub, TSubscription> _topicClient;
-        private readonly Func<TSubscription, HubCallerContext, Task<bool>> _authoriseSubscription;
+        private readonly ITopicClient<THub, TIHub, TSubscription, TMessage> _topicClient;
+        private readonly Func<TSubscription, HubCallerContext, Task<bool>> _authorise;
 
         public TopicHub(
-            ITopicClient<TMessage, THub, TIHub, TSubscription> topicClient,
-            Func<TSubscription, HubCallerContext, Task<bool>> authoriseSubscription)
+            ITopicClient<THub, TIHub, TSubscription, TMessage> topicClient,
+            Func<TSubscription, HubCallerContext, Task<bool>> authorise)
         {
             _topicClient = topicClient ?? throw new ArgumentNullException(nameof(topicClient));
-            _authoriseSubscription = authoriseSubscription ?? throw new ArgumentNullException(nameof(authoriseSubscription));
+            _authorise = authorise ?? throw new ArgumentNullException(nameof(authorise));
         }
 
         public async Task Subscribe(TSubscription subscription)
         {
-            if (await _authoriseSubscription(subscription, Context))
+            if (await _authorise(subscription, Context))
             {
                 await _topicClient.Subscribe(subscription, Context.ConnectionId);
             }
