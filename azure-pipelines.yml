@@ -13,8 +13,8 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
+    configuration: 'Release'
     projects: '**/*ServiceFabric.SignalR.Topics*.csproj'
-    configuration: Release
 
 # - task: VSTest@2
 #   inputs:
