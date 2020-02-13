@@ -14,6 +14,7 @@ steps:
   inputs:
     command: 'build'
     projects: '**/*ServiceFabric.SignalR.Topics*.csproj'
+    configuration: Release
 
 # - task: VSTest@2
 #   inputs:
