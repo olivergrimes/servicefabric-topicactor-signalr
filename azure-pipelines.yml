@@ -29,10 +29,8 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/ServiceFabric.SignalR.Topics.Hubs.csproj'
-    versioningScheme: 'byPrereleaseNumber'
-    majorVersion: '1'
-    minorVersion: '0'
-    patchVersion: '0'
+    versioningScheme: byEnvVar
+    versionEnvVar: '$(BUILD_BUILDNUMBER)'
 
 - task: NuGetCommand@2
   inputs:
