@@ -30,7 +30,7 @@ steps:
     command: 'pack'
     packagesToPack: '**/ServiceFabric.SignalR.Topics.Hubs.csproj'
     versioningScheme: byEnvVar
-    versionEnvVar: '$(BUILD_BUILDNUMBER)'
+    versionEnvVar: 'BUILD_BUILDNUMBER'
 
 - task: NuGetCommand@2
   inputs:
