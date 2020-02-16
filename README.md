@@ -79,7 +79,7 @@ private Task Publish(AuctionUpdate update)
 
 Any SignalR connected client subscribed to that particular topic will receive the update.  If a service doesn't have any clients subscribed to that topic, it won't receive the update.
 
-This repository contains the source for the nuget package and also a working demo example.
+This repository contains the source for the nuget package and also a working demo example.  Open the browser console to see the published messages being received.
 
 ---
 
