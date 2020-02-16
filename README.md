@@ -26,7 +26,7 @@ internal class TopicActor : Actor, ITopicActor
 
 Each actor instance in this service will represent a specific pub/sub topic.
 
-Register the topics services your SignalR host service:
+Register the topics services within your SignalR host service:
 
 Register in **Startup.cs**:
 
@@ -57,13 +57,11 @@ public class AuctionHub :
 ```
 > Note the `authorise` argument required by the `TopicHub` base class.  This allows resource-based authorisation against the requested subscription.
 
-The `TMessage` and `TSubscription` types should live in the `TopicActor` interfaces library as these will be shared between publisher and subscriber services.
+The `TMessage` and `TSubscription` types should be serializable and live in the `TopicActor` interfaces library, as they will be shared between publisher and subscriber services.
 
 The `TSubscription` type must implement the `ITopicId` interface, this allows an `ActorId` to be generated from your subscription contract.
 
-That's it!
-
-You can now use `ITopicPublisher<TMessage, TSubscription>`/`TopicActorPublisher` to publish messages from any service within your application, e.g.:
+That's it!  You can now use `ITopicPublisher<TMessage, TSubscription>`/`TopicActorPublisher` to publish messages from any service within your application, e.g.:
 
 ```
 public EventPublisher(
