@@ -55,6 +55,7 @@ public class AuctionHub :
     { }
 }
 ```
+> Note the `authorise` argument required by the `TopicHub` base class.  This allows resource-based authorisation against the requested subscription.
 
 The `TMessage` and `TSubscription` types should live in the `TopicActor` interfaces library as these will be shared between publisher and subscriber services.
 
