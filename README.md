@@ -4,7 +4,10 @@ This library provides a framework for scaling SignalR in Service Fabric applicat
 
 ## Usage
 
+### TopicActor
+
 Create an Actor service in the application that implements the `ITopicActor` actor interface included in the package, for example:
+
 
 ```
 [StatePersistence(StatePersistence.None)]
@@ -26,9 +29,12 @@ internal class TopicActor : Actor, ITopicActor
 
 Each actor instance in this service will represent a specific pub/sub topic.
 
+### SignalR Setup
+
 Register the topics services within your SignalR host service:
 
 Register in **Startup.cs**:
+
 
 ```
 public void ConfigureServices(IServiceCollection services)
@@ -41,6 +47,7 @@ public void ConfigureServices(IServiceCollection services)
 This maps the dependencies that are required by the topic Hubs.
 
 Then create your topic Hub classes, ensuring they inherit the `TopicHub<THub, TIHub, TSubscription, TMessage>` base class, e.g.:
+
 
 ```
 public class AuctionHub : 
@@ -55,13 +62,16 @@ public class AuctionHub :
     { }
 }
 ```
+
 > Note the `authorise` argument required by the `TopicHub` base class.  This allows resource-based authorisation against the requested subscription.
 
 The `TMessage` and `TSubscription` types should be serializable and live in the `TopicActor` interfaces library, as they will be shared between publisher and subscriber services.
 
 The `TSubscription` type must implement the `ITopicId` interface, this allows an `ActorId` to be generated from your subscription contract.
 
+
 That's it!  You can now use `ITopicPublisher<TMessage, TSubscription>`/`TopicActorPublisher` to publish messages from any service within your application, e.g.:
+
 
 ```
 public EventPublisher(
@@ -81,7 +91,9 @@ Any SignalR connected client subscribed to that particular topic will receive th
 
 This repository contains the source for the nuget package and also a working demo example.  Open the browser console to see the published messages being received.
 
+
 ---
+
 
 ### Notes
 
