@@ -61,7 +61,9 @@ The `TMessage` and `TSubscription` types should live in the `TopicActor` interfa
 
 The `TSubscription` type must implement the `ITopicId` interface, this allows an `ActorId` to be generated from your subscription contract.
 
-Use `ITopicPublisher<TMessage, TSubscription>`/`TopicActorPublisher` to publish messages from any service within your application, e.g.:
+That's it!
+
+You can now use `ITopicPublisher<TMessage, TSubscription>`/`TopicActorPublisher` to publish messages from any service within your application, e.g.:
 
 ```
 public EventPublisher(
@@ -77,7 +79,10 @@ private Task Publish(AuctionUpdate update)
 }
 ```
 
-Any SignalR client subscribed to that particular topic will receive the update.  If a service doesn't have any clients subscribed to that topic, it won't receive the update.
+Any SignalR connected client subscribed to that particular topic will receive the update.  If a service doesn't have any clients subscribed to that topic, it won't receive the update.
 
 This repository contains the source for the nuget package and also a working demo example.
 
+---
+
+I've omitted the SignalR boilerplate setup and js client as that all remains the same, regardless of this library being used.  In my implementations I have ensured the client re-subscribes if the websocket connection closes.  This is because the actor proxy stored by the SignalR host service will be lost in the event of a failover, e.g. during a deployment.
