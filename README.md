@@ -94,4 +94,4 @@ This repository contains the source for the nuget package and also a working dem
 
 ## Notes
 
-I've omitted the SignalR boilerplate setup and js client as that all remains the same, regardless of this library being used.  In my implementations I have ensured the client re-subscribes if the websocket connection closes.  This is because the actor proxy stored by the SignalR host service will be lost in the event of a failover, e.g. during a deployment.
+I've omitted the SignalR boilerplate setup and js client as that all remains the same, regardless of this library being used.  However, in my implementations I have ensured the client re-subscribes if the websocket connection closes.  This is because the actor proxy stored by the SignalR host service will be lost in the event of a failover, e.g. during a deployment.
