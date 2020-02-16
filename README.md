@@ -56,11 +56,11 @@ public class AuctionHub :
 }
 ```
 
-The `TMessage` and `TSubscription` types should live in the `TopicActor` interfaces library as these will be shared across publisher and subscriber.
+The `TMessage` and `TSubscription` types should live in the `TopicActor` interfaces library as these will be shared between publisher and subscriber services.
 
 The `TSubscription` type must implement the `ITopicId` interface, this allows an `ActorId` to be generated from your subscription contract.
 
-Use the `ITopicPublisher<TMessage, TSubscription>`/`TopicActorPublisher` types to publish messages from any service within your application, e.g.:
+Use `ITopicPublisher<TMessage, TSubscription>`/`TopicActorPublisher` to publish messages from any service within your application, e.g.:
 
 ```
 public EventPublisher(
