@@ -42,10 +42,10 @@ namespace Demo.EventPublisher
                     Id = 1,
                     Name = "Test"
                 },
-                    new AuctionSubscription
-                    {
-                        Category = "Test",
-                    });
+                new AuctionSubscription
+                {
+                    Category = "Test",
+                });
 
                 await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
             }
