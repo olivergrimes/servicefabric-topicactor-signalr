@@ -36,7 +36,7 @@ Register the topics services within your SignalR host service:
 Register in **Startup.cs**:
 
 
-```
+```c#
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddSignalR();
@@ -49,7 +49,7 @@ This maps the dependencies that are required by the topic Hubs.
 Then create your topic Hub classes, ensuring they inherit the `TopicHub<THub, TIHub, TSubscription, TMessage>` base class, e.g.:
 
 
-```
+```c#
 public class AuctionHub : 
     TopicHub<AuctionHub, IAuctionHub, AuctionSubscription, AuctionUpdate>
 {
@@ -73,7 +73,7 @@ The `TSubscription` type must implement the `ITopicId` interface, this allows an
 That's it!  You can now use `ITopicPublisher<TMessage, TSubscription>`/`TopicActorPublisher` to publish messages from any service within your application, e.g.:
 
 
-```
+```c#
 public EventPublisher(
   StatelessServiceContext context, 
   ITopicPublisher<AuctionUpdate, AuctionSubscription> topicPublisher) : base(context)
