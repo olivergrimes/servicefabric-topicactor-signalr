@@ -9,7 +9,7 @@ This library provides a framework for scaling SignalR in Service Fabric applicat
 Create an Actor service in the application that implements the `ITopicActor` actor interface included in the package, for example:
 
 
-```
+```c#
 [StatePersistence(StatePersistence.None)]
 internal class TopicActor : Actor, ITopicActor
 {
