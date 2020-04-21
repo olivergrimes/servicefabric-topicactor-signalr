@@ -4,7 +4,7 @@ using System;
 namespace ServiceFabric.SignalR.Topics.Actors
 {
     public class TopicActorSubscriberFactory<TMessage, TSubscription> : ITopicSubscriberFactory<TMessage, TSubscription>
-        where TSubscription : ITopicId<TSubscription>
+        where TSubscription : ITopicId
     {
         private readonly IActorProxyFactory _actorProxyFactory;
 

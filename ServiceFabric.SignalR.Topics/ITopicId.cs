@@ -1,6 +1,6 @@
 ﻿namespace ServiceFabric.SignalR.Topics
 {
-    public interface ITopicId<T>
+    public interface ITopicId
     {
         string GetTopicId();
     }

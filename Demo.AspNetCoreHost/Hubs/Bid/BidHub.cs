@@ -1,4 +1,5 @@
-﻿using ServiceFabric.SignalR.Topics.Hubs;
+﻿using ServiceFabric.SignalR.Topics;
+using ServiceFabric.SignalR.Topics.Hubs;
 using System.Threading.Tasks;
 
 namespace Demo.AspNetCoreHost.Hubs.Bid
@@ -8,9 +9,14 @@ namespace Demo.AspNetCoreHost.Hubs.Bid
 
     }
 
-    public class BidSubscription
+    public class BidSubscription : ITopicId
     {
         public int AuctionId { get; set; }
+
+        public string GetTopicId()
+        {
+            return $"NewBid-{AuctionId}";
+        }
     }
 
     public class BidUpdate

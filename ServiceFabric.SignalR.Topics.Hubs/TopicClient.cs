@@ -13,7 +13,7 @@ namespace ServiceFabric.SignalR.Topics.Hubs
         ITopicMessageCallback<TMessage, TSubscription>
         where THub : Hub<TIHub>
         where TIHub : class, ITopicHub<TMessage>
-        where TSubscription : ITopicId<TSubscription>
+        where TSubscription : ITopicId
     {
         private readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
 

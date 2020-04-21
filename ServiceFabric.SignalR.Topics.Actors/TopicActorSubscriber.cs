@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ServiceFabric.SignalR.Topics.Actors
 {
     public class TopicActorSubscriber<TMessage, TSubscription> : ITopicActorEvents, ITopicSubscriber<TMessage, TSubscription>
-        where TSubscription : ITopicId<TSubscription>
+        where TSubscription : ITopicId
     {
         private readonly IActorProxyFactory _actorProxyFactory;
         private readonly ITopicMessageCallback<TMessage, TSubscription> _callback;

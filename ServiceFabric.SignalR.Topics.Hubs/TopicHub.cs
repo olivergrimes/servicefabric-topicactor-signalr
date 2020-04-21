@@ -7,6 +7,7 @@ namespace ServiceFabric.SignalR.Topics.Hubs
     public abstract class TopicHub<THub, TIHub, TSubscription, TMessage> : Hub<TIHub>
            where THub : Hub<TIHub>
            where TIHub : class, ITopicHub<TMessage>
+           where TSubscription : ITopicId
     {
         private readonly ITopicClient<THub, TIHub, TSubscription, TMessage> _topicClient;
         private readonly Func<TSubscription, HubCallerContext, Task<bool>> _authorise;

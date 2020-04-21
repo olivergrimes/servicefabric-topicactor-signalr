@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ServiceFabric.SignalR.Topics.Actors
 {
     public class TopicActorPublisher<TMessage, TSubscription> : ITopicPublisher<TMessage, TSubscription>
-        where TSubscription : ITopicId<TSubscription>
+        where TSubscription : ITopicId
     {
         private readonly IActorProxyFactory _actorProxyFactory;
 
