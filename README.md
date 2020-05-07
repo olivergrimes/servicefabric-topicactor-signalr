@@ -1,7 +1,11 @@
 # servicefabric-topicactor-signalr
-[![Build Status](https://olivergrimes.visualstudio.com/olivergrimes-github-ci/_apis/build/status/olivergrimes.servicefabric-topicactor-signalr?branchName=master)](https://olivergrimes.visualstudio.com/olivergrimes-github-ci/_build/latest?definitionId=6&branchName=master) [![Nuget](https://img.shields.io/nuget/v/servicefabric-topicactor-signalr)](https://www.nuget.org/packages/servicefabric-topicactor-signalr/)
+[![Build Status](https://olivergrimes.visualstudio.com/olivergrimes-github-ci/_apis/build/status/olivergrimes.servicefabric-topicactor-signalr?branchName=master)](https://olivergrimes.visualstudio.com/olivergrimes-github-ci/_build/latest?definitionId=6&branchName=master) 
 
-This library provides a framework for scaling SignalR in Service Fabric applications using Actor Events.  This method avoids the overhead and cost of an external backplane.
+Hub Package: [![Nuget](https://img.shields.io/nuget/v/ServiceFabric.SignalR.TopicActor.Hubs)](https://www.nuget.org/packages/ServiceFabric.SignalR.TopicActor.Hubs/)
+
+Actor Package: [![Nuget](https://img.shields.io/nuget/v/ServiceFabric.SignalR.TopicActor)](https://www.nuget.org/packages/ServiceFabric.SignalR.TopicActor/)
+
+A framework for scaling SignalR in Service Fabric applications using Actor Events.  This method avoids the overhead and cost of an external backplane.
 
 ## Usage
 
