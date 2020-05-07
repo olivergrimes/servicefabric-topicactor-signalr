@@ -2,10 +2,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <PackageId>servicefabric-topicactor-signalr</PackageId>
+    <PackageId>ServiceFabric.SignalR.TopicActor.Hubs</PackageId>
     <Authors>Oliver Grimes</Authors>
     <Company>Oliver Grimes</Company>
-    <Product>servicefabric-topicactor-signalr</Product>
+    <Product>ServiceFabric.SignalR.TopicActor.Hubs</Product>
     <PackageProjectUrl>https://github.com/olivergrimes/servicefabric-topicactor-signalr</PackageProjectUrl>
     <RepositoryUrl>https://github.com/olivergrimes/servicefabric-topicactor-signalr</RepositoryUrl>
     <Copyright>Oliver Grimes</Copyright>

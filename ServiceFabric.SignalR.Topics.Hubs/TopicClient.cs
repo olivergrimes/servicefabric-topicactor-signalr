@@ -18,7 +18,7 @@ namespace ServiceFabric.SignalR.Topics.Hubs
         private readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
 
         private readonly ConcurrentDictionary<string, TopicSubscription<TSubscription>> _topicConnections = 
-            new ConcurrentDictionary<string, TopicSubscription<TSubscription>>(); //<topicId, HashSet<connectionId>>
+            new ConcurrentDictionary<string, TopicSubscription<TSubscription>>();
         
         private readonly ITopicSubscriber<TMessage, TSubscription> _topicSubscriber;
         

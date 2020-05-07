@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <PackageId>ServiceFabric.SignalR.TopicActor</PackageId>
+    <Authors>Oliver Grimes</Authors>
+    <Company>Oliver Grimes</Company>
+    <Product>ServiceFabric.SignalR.TopicActor</Product>
+    <PackageProjectUrl>https://github.com/olivergrimes/servicefabric-topicactor-signalr</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/olivergrimes/servicefabric-topicactor-signalr</RepositoryUrl>
+    <Copyright>Oliver Grimes</Copyright>
+    <Description>Framework for scaling SignalR using Actor Events.</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,4 +22,16 @@
     <ProjectReference Include="..\ServiceFabric.SignalR.Topics\ServiceFabric.SignalR.Topics.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceFabric.SignalR.Topics\ServiceFabric.SignalR.Topics.csproj">
+      <PrivateAssets>all</PrivateAssets>
+    </ProjectReference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="bin\Release\netstandard2.0\ServiceFabric.SignalR.Topics.dll">
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+  </ItemGroup>
 </Project>
