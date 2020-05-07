@@ -1,25 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <PackageId>ServiceFabric.SignalR.TopicActor</PackageId>
+    <PackageId>ServiceFabric.SignalR.Topics.Actors</PackageId>
     <Authors>Oliver Grimes</Authors>
     <Company>Oliver Grimes</Company>
-    <Product>ServiceFabric.SignalR.TopicActor</Product>
+    <Product>ServiceFabric.SignalR.Topics.Actors</Product>
     <PackageProjectUrl>https://github.com/olivergrimes/servicefabric-topicactor-signalr</PackageProjectUrl>
     <RepositoryUrl>https://github.com/olivergrimes/servicefabric-topicactor-signalr</RepositoryUrl>
     <Copyright>Oliver Grimes</Copyright>
-    <Description>Framework for scaling SignalR using Actor Events.</Description>
+    <Description>Library for scaling SignalR using Actor Events. Install this package to the event publisher services.</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ServiceFabric.Actors" Version="4.0.457" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ServiceFabric.SignalR.Topics\ServiceFabric.SignalR.Topics.csproj" />
   </ItemGroup>
 
   <ItemGroup>

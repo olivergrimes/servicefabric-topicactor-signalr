@@ -1,15 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <PackageId>ServiceFabric.SignalR.TopicActor.Hubs</PackageId>
+    <PackageId>ServiceFabric.SignalR.Topics.Hubs</PackageId>
     <Authors>Oliver Grimes</Authors>
     <Company>Oliver Grimes</Company>
-    <Product>ServiceFabric.SignalR.TopicActor.Hubs</Product>
+    <Product>ServiceFabric.SignalR.Topics.Hubs</Product>
     <PackageProjectUrl>https://github.com/olivergrimes/servicefabric-topicactor-signalr</PackageProjectUrl>
     <RepositoryUrl>https://github.com/olivergrimes/servicefabric-topicactor-signalr</RepositoryUrl>
     <Copyright>Oliver Grimes</Copyright>
-    <Description>Framework for scaling SignalR using Actor Events.</Description>
+    <Description>Library for scaling SignalR using Actor Events. Install this package to the SignalR host service.</Description>
   </PropertyGroup>
 
   <ItemGroup>
