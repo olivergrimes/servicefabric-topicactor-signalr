@@ -1,9 +1,10 @@
 # servicefabric-topicactor-signalr
-[![Build Status](https://olivergrimes.visualstudio.com/olivergrimes-github-ci/_apis/build/status/olivergrimes.servicefabric-topicactor-signalr?branchName=master)](https://olivergrimes.visualstudio.com/olivergrimes-github-ci/_build/latest?definitionId=6&branchName=master) 
 
-Hubs Package: [![Nuget](https://img.shields.io/nuget/v/ServiceFabric.SignalR.TopicActor.Hubs)](https://www.nuget.org/packages/ServiceFabric.SignalR.TopicActor.Hubs/)
-
-Actor Package: [![Nuget](https://img.shields.io/nuget/v/ServiceFabric.SignalR.TopicActor)](https://www.nuget.org/packages/ServiceFabric.SignalR.TopicActor/)
+| | Status |
+| --- | --- |
+| Build | [![Build Status](https://olivergrimes.visualstudio.com/olivergrimes-github-ci/_apis/build/status/olivergrimes.servicefabric-topicactor-signalr?branchName=master)](https://olivergrimes.visualstudio.com/olivergrimes-github-ci/_build/latest?definitionId=6&branchName=master) |
+| Hubs Package | [![Nuget](https://img.shields.io/nuget/v/ServiceFabric.SignalR.TopicActor.Hubs)](https://www.nuget.org/packages/ServiceFabric.SignalR.TopicActor.Hubs/) |
+| Actor Package | [![Nuget](https://img.shields.io/nuget/v/ServiceFabric.SignalR.TopicActor)](https://www.nuget.org/packages/ServiceFabric.SignalR.TopicActor/) |
 
 A framework for scaling SignalR in Service Fabric applications using Actor Events.  This method avoids the overhead and cost of an external backplane.
 
