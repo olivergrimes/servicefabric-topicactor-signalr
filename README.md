@@ -12,7 +12,7 @@ A framework for scaling SignalR in Service Fabric applications using Actor Event
 
 ### TopicActor
 
-Create an Actor service in the application that implements the `ITopicActor` actor interface included in the package, for example:
+Create an Actor service in the application that implements the `ITopicActor` actor interface included in the **Actor** package, for example:
 
 
 ```c#
@@ -37,9 +37,9 @@ Each actor instance in this service will represent a specific pub/sub topic.
 
 ### SignalR Setup
 
-Register the topics services within your SignalR host service:
+Install the **Hubs** package into your SignalR host service.
 
-Register in **Startup.cs**:
+Register the topic services in **Startup.cs**:
 
 
 ```c#
@@ -76,6 +76,8 @@ The `TMessage` and `TSubscription` types should be serializable and live in the 
 The `TSubscription` type must implement the `ITopicId` interface, this allows an `ActorId` to be generated from your subscription contract.
 
 ### Event Publishing
+
+Install the **Actor** package into your event publishing service.
 
 You can now use `ITopicPublisher<TMessage, TSubscription>`/`TopicActorPublisher` to publish messages from any service within your application, e.g.:
 
