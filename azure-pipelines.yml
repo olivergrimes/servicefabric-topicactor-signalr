@@ -32,6 +32,13 @@ steps:
     versioningScheme: byEnvVar
     versionEnvVar: 'BUILD_BUILDNUMBER'
 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/ServiceFabric.SignalR.Topics.Actors.csproj'
+    versioningScheme: byEnvVar
+    versionEnvVar: 'BUILD_BUILDNUMBER'
+
 - task: NuGetCommand@2
   inputs:
     command: 'push'
