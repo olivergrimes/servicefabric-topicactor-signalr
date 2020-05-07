@@ -1,13 +1,18 @@
 # servicefabric-topicactor-signalr
-[![Build Status](https://olivergrimes.visualstudio.com/olivergrimes-github-ci/_apis/build/status/olivergrimes.servicefabric-topicactor-signalr?branchName=master)](https://olivergrimes.visualstudio.com/olivergrimes-github-ci/_build/latest?definitionId=6&branchName=master) [![Nuget](https://img.shields.io/nuget/v/servicefabric-topicactor-signalr)](https://www.nuget.org/packages/servicefabric-topicactor-signalr/)
 
-This library provides a framework for scaling SignalR in Service Fabric applications using Actor Events.  This method avoids the overhead and cost of an external backplane.
+A framework for scaling SignalR in Service Fabric applications using Actor Events.  This method avoids the overhead and cost of an external backplane.
+
+| | Status |
+| --- | --- |
+| Build | [![Build Status](https://olivergrimes.visualstudio.com/olivergrimes-github-ci/_apis/build/status/olivergrimes.servicefabric-topicactor-signalr?branchName=master)](https://olivergrimes.visualstudio.com/olivergrimes-github-ci/_build/latest?definitionId=6&branchName=master) |
+| Hubs Package | [![Nuget](https://img.shields.io/nuget/v/ServiceFabric.SignalR.TopicActor.Hubs)](https://www.nuget.org/packages/ServiceFabric.SignalR.TopicActor.Hubs/) |
+| Actor Package | [![Nuget](https://img.shields.io/nuget/v/ServiceFabric.SignalR.TopicActor)](https://www.nuget.org/packages/ServiceFabric.SignalR.TopicActor/) |
 
 ## Usage
 
 ### TopicActor
 
-Create an Actor service in the application that implements the `ITopicActor` actor interface included in the package, for example:
+Create an Actor service in the application that implements the `ITopicActor` actor interface included in the **Actor** package, for example:
 
 
 ```c#
@@ -32,9 +37,9 @@ Each actor instance in this service will represent a specific pub/sub topic.
 
 ### SignalR Setup
 
-Register the topics services within your SignalR host service:
+Install the **Hubs** package into your SignalR host service.
 
-Register in **Startup.cs**:
+Register the topic services in **Startup.cs**:
 
 
 ```c#
@@ -70,8 +75,11 @@ The `TMessage` and `TSubscription` types should be serializable and live in the 
 
 The `TSubscription` type must implement the `ITopicId` interface, this allows an `ActorId` to be generated from your subscription contract.
 
+### Event Publishing
 
-That's it!  You can now use `ITopicPublisher<TMessage, TSubscription>`/`TopicActorPublisher` to publish messages from any service within your application, e.g.:
+Install the **Actor** package into your event publishing service.
+
+You can now use `ITopicPublisher<TMessage, TSubscription>`/`TopicActorPublisher` to publish messages from any service within your application, e.g.:
 
 
 ```c#
