@@ -75,8 +75,9 @@ The `TMessage` and `TSubscription` types should be serializable and live in the 
 
 The `TSubscription` type must implement the `ITopicId` interface, this allows an `ActorId` to be generated from your subscription contract.
 
+### Event Publishing
 
-That's it!  You can now use `ITopicPublisher<TMessage, TSubscription>`/`TopicActorPublisher` to publish messages from any service within your application, e.g.:
+You can now use `ITopicPublisher<TMessage, TSubscription>`/`TopicActorPublisher` to publish messages from any service within your application, e.g.:
 
 
 ```c#
